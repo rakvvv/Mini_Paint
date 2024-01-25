@@ -1,0 +1,62 @@
+/* Additional styles for the homepage */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 0;
+    background-color: #a5d1f7;
+    color: #00a3da;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 3em;
+}
+
+.hero p {
+    font-size: 1.5em;
+}
+
+.paint-options {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #a5d1f7;
+}
+
+.paint-option {
+    margin-bottom: 30px;
+}
+
+.paint-option h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.paint-option p {
+    font-size: 1.2em;
+}
+
+.image-slider {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #fff;
+}
+
+.image-slider h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.slider {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.slider img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
