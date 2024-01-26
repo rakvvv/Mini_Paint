@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paint App</title>
+    
+    <link rel="stylesheet" href="Paint_css.css">
+    <link rel="stylesheet" href="Projekt_css.css"> 
+    <!--Ikony-->
+    <script src="https://kit.fontawesome.com/e254006039.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+            <a href="/Projekt.html" class="logo">Mini Paint</a>
+            <ul>
+                <li class="active">
+                    <a href="/home.html">
+                        <i class="fa fa-home"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#" id="openFormLink">
+                        <i class="fa-solid fa-phone"></i>
+                        Contact
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#" id="bugReportLink">
+                        <i class="fa-solid fa-bug"></i>
+                        Bugs
+                    </a>
+                </li>
+            </ul>
+    </header>
+
+    
+    <div class="container">
+        <section class="tool_board">
+             <div class="row colors">
+                <label for="" class="title">Kolory</label>
+                <ul class="options">
+                    <li class="option "></li>
+                    <li class="option selected"></li>
+                    <li class="option"></li>
+                    <li class="option"></li>
+                    <li class="option">
+                        <input type="color" id="color-selector" value="#00a3da"> 
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <label for="" class="title">Kształty</label>
+                <ul class="options">
+                    <li class="option tool" id="rectangle">
+                        <i class="fa-regular fa-square"></i>
+                        <span>Kwadrat</span>
+                    </li>
+                    <li class="option tool" id="circle">
+                        <i class="fa-regular fa-circle"></i>
+                        <span>Koło</span>
+                    </li>
+                    <li class="option tool" id="triangle">
+                        <i class="fa-solid fa-caret-up"></i>
+                        <span>Trójkąt</span>
+                    </li>
+                    <li class="option">
+                        <input type="checkbox" id="fill-color">
+                        <label for="fill-color">Wypełnij kolorem</label>
+                       
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <label for="" class="title">Opcje</label>
+                <ul class="options">
+                    <li class="option active tool" id="brush">
+                        <i class="fa-solid fa-brush"></i>
+                        <span>Pędzel</span>
+                    </li>
+                    <li class="option tool" id="eraser">
+                        <i class="fa-solid fa-eraser"></i>
+                        <span>Gumka</span>
+                    </li>
+                    <li class="option tool" id="line">
+                        <i class="fa-solid fa-slash"></i>
+                        <span>Linia</span>
+                    </li>
+                    <li class="option">
+                        <input type="range" id="size-slider" min="1" max="20" value="5">
+                
+                    </li>
+                </ul>
+            </div>
+           
+            <div class="row buttons">
+                <button class="clear-canvas">Wyczyść tablice</button>
+                <button class="save-img">Zapisz obraz</button>
+                <button class="load-json">Wczytaj JSON</button>
+            </div>
+        </section>
+        <section class="drawing_board">
+            <canvas></canvas>
+        </section>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div  id="formPopup" class="popup">
+        <span class="closeBtn" id="closeBtn">&times;</span>
+            <article>
+                <hgroup>
+                    <h2>Zapisz się do Newslettera</h2>
+                    <h3>Bądź na bieżąco</h3>
+                </hgroup>
+                <form class="grid">
+                    <input type="text" id="firstname" name="firstname" placeholder="Imię" required />
+                    <input type="email" id="email" name="email" placeholder="Email" required />
+                    <button type="submit" onclick="event.preventDefault()">Zapisz się</button>
+                </form>
+            </article>
+        </div>
+        <div class="overlay" id="overlay"></div>
+    
+        <div id="bugReportPopup" class="popup">
+            <span class="closeBtn" id="closeBugBtn">&times;</span>
+            <article>
+                <hgroup>
+                    <h2>Zgłoś Błąd</h2>
+                    <h3>Pomóż nam ulepszyć naszą aplikację</h3>
+                </hgroup>
+                    <form class="grid">
+                    <input type="text" id="bugname" name="bugname" placeholder="Nazwa błędu" required />
+                    <textarea id="bugdescription" name="bugdescription" placeholder="Opis błędu" required></textarea>
+                    <button type="submit" onclick="event.preventDefault()">Zgłoś</button>
+                </form>
+            </article>
+        </div>
+
+        <script src="form.js"></script>
+        <script src="Projekt_javascript.js" defer></script>
+</body>
+</html>
