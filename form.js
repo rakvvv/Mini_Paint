@@ -4,9 +4,13 @@ document.getElementById("openFormLink").addEventListener("click", function(event
     document.getElementById("overlay").style.display = "block";
 });
 
-document.getElementById("overlay").addEventListener("click", function() {
-    document.getElementById("formPopup").classList.remove("show");
-    this.style.display = "none";
+document.getElementById("overlay").addEventListener("click", function(event) {
+    if (event.target === this) {
+        document.querySelectorAll(".popup.show").forEach(function(popup) {
+            popup.classList.remove("show");
+        });
+        this.style.display = "none";
+    }
 });
 
 document.getElementById("closeBtn").addEventListener("click", function() {
