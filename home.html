@@ -1,52 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paint App</title>
-    <link rel="stylesheet" href="Projekt_css.css">
-    <!--Ikony-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paint App & Projekt</title>
+    
+    <link rel="stylesheet" href="home_css.css">
     <script src="https://kit.fontawesome.com/e254006039.js" crossorigin="anonymous"></script>
-    <!--JQuery biblioteka-->
-    <script src=
-"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
-    </script>
+    
+    
 </head>
 <body>
-    <header class="header">
-        <div class="navbar">
+    <header>
+        <header>
+            <a href="/Projekt.html" class="logo">Mini Paint</a>
             <ul>
-                <li class="list-item">
-                    <a href="/Projekt.html">
-                        <i class="fa-solid fa-brush"></i>
-                        Paint
-                    </a>
-                </li>
-                <li class="list-item active">
+                <li class="active">
                     <a href="/home.html">
-                        <i class="fa fa-home"></i>
+                        <i class="fa fa-home"></i> 
                         Home
                     </a>
                 </li>
-                <li class="list-item">
-                    <a href="/contact.html">
-                        <i class="fa-solid fa-phone"></i>
+                <li>
+                    <a href="#" id="openFormLink">
+                        <i class="fa-solid fa-phone"></i> 
                         Contact
                     </a>
                 </li>
-                <li class="list-item">
-                    <a href="/bug.html">
-                        <i class="fa-solid fa-bug"></i>
+                <li>
+                    <a href="#" id="bugReportLink">
+                        <i class="fa-solid fa-bug"></i> 
                         Bugs
                     </a>
                 </li>
             </ul>
-        </div>
+        </header>
     </header>
 
 
+    <section class="container image-gallery">
+        <h1 id="text">Welcome to Mini Paint</h1>
+        <img src="paint.png" alt="">
+    </section>
+    
+    <main>
+        <section class="text-content">
+            <h2>About Painting</h2>
+            <p>Introduction to the art of painting, its history, and significance.</p>
+        </section>
 
+        <section class="text-content">
+            <h2>Our Painting Service</h2>
+            <p>Detailed information about your painting services, techniques, and styles.</p>
+        </section>
+    </main>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div  id="formPopup" class="popup">
+    <span class="closeBtn" id="closeBtn">&times;</span>
+        <article>
+            <hgroup>
+                <h2>Kontakt</h2>
+                <h3>Wprowadź dane a odezwiemy się do ciebie.</h3>
+            </hgroup>
+            <form class="grid">
+                <input type="text" id="firstname" name="firstname" placeholder="Imię" required />
+                <input type="email" id="email" name="email" placeholder="Email" required />
+                <button type="submit" onclick="event.preventDefault()">Wyślij</button>
+            </form>
+        </article>
+    </div>
+
+    <div id="bugReportPopup" class="popup">
+        <span class="closeBtn" id="closeBugBtn">&times;</span>
+        <article>
+            <hgroup>
+                <h2>Zgłoś Błąd</h2>
+                <h3>Pomóż nam ulepszyć naszą stronę.</h3>
+            </hgroup>
+                <form class="grid">
+                <input type="text" id="bugname" name="bugname" placeholder="Nazwa błędu" required />
+                <textarea id="bugdescription" name="bugdescription" placeholder="Opis błędu" required></textarea>
+                <button type="submit" onclick="event.preventDefault()">Zgłoś</button>
+            </form>
+        </article>
+    </div>
+
+   
+    <script src="form.js"></script>
 </body>
-<script src="Projekt_javascript.js"></script>
 </html>

@@ -1,62 +1,214 @@
-/* Additional styles for the homepage */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+/* Reset*/
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+
+/* style bazowe */
 body {
-    font-family: 'Arial', sans-serif;
-    color: #333;
+    margin: 0;
+    padding: 0;
+    padding-top: 50px;
+    background: linear-gradient(#2b1055,#7595de);
+    min-height: 200vh;
 }
+/* style noramlne*/
 
-.hero {
-    text-align: center;
-    padding: 100px 0;
-    background-color: #a5d1f7;
-    color: #00a3da;
-    z-index: 1;
-}
-
-.hero h1 {
-    font-size: 3em;
-}
-
-.hero p {
-    font-size: 1.5em;
-}
-
-.paint-options {
-    text-align: center;
-    padding: 50px 0;
-    background-color: #a5d1f7;
-}
-
-.paint-option {
-    margin-bottom: 30px;
-}
-
-.paint-option h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-.paint-option p {
-    font-size: 1.2em;
-}
-
-.image-slider {
-    text-align: center;
-    padding: 50px 0;
-    background-color: #fff;
-}
-
-.image-slider h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-.slider {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.slider img {
+header{
+    position:fixed;
+    top: 0;
+    left: 0;
+    height: 10%;
     width: 100%;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2b1055;
+    z-index: 998;
+    opacity: 99%;
+}
+
+header .logo {
+    color:#fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li{
+    list-style: none;
+    margin-left: 20px
+}
+header ul li a{
+text-decoration: none;
+padding: 5px 15px;
+color: #fff;
+border-radius:20px;
+transition: all 0.3s ease;
+}
+header ul li a:hover,
+header ul li a.active {
+    background: #fff;
+    color:#2b1055;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 100px;
+}
+.text-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    animation: fadeIn 2s;
+    width: 1500px;
+}
+
+.image-gallery img {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    transition: transform 0.5s;
+    opacity: 20%;
+}
+
+.image-gallery img:hover {
+    transform: scale(1.1);
+}
+#text{
+    position: absolute;
+    color: #fff;
+    white-space: nowrap;
+    font-size: 5.5vw;
+    
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  .popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: white;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .popup.show {
+    display: block;
+    opacity: 1;
+  }
+  .closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #2b1055;
+    font-weight: bold;
+}
+form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2b1055;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #7595de;
+}
+
+.popup article {
+    text-align: center;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media only screen and (max-width: 800px) {
+    header {
+        padding: 15px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header .logo {
+        margin-bottom: 15px;
+    }
+
+    header ul {
+        flex-direction: column;
+    }
+
+    header ul li {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    header ul li a {
+        padding: 8px 15px;
+    }
 }
