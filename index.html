@@ -108,34 +108,35 @@
     <div class="overlay" id="overlay"></div>
 
     <div  id="formPopup" class="popup">
-        <span class="closeBtn" id="closeBtn">&times;</span>
-            <article>
-                <hgroup>
-                    <h2>Zapisz się do Newslettera</h2>
-                    <h3>Bądź na bieżąco</h3>
-                </hgroup>
+    <span class="closeBtn" id="closeBtn">&times;</span>
+        <article>
+            <hgroup>
+                <h2>Kontakt</h2>
+                <h3>Wprowadź dane a odezwiemy się do ciebie.</h3>
+            </hgroup>
+            <form class="grid">
+                <input type="text" id="firstname" name="firstname" placeholder="Imię" required />
+                <input type="email" id="email" name="email" placeholder="Email" required />
+                <button type="submit" onclick="event.preventDefault()">Wyślij</button>
+            </form>
+        </article>
+    </div>
+
+    <div id="bugReportPopup" class="popup">
+        <span class="closeBtn" id="closeBugBtn">&times;</span>
+        <article>
+            <hgroup>
+                <h2>Zgłoś Błąd</h2>
+                <h3>Pomóż nam ulepszyć naszą stronę.</h3>
+            </hgroup>
                 <form class="grid">
-                    <input type="text" id="firstname" name="firstname" placeholder="Imię" required />
-                    <input type="email" id="email" name="email" placeholder="Email" required />
-                    <button type="submit" onclick="event.preventDefault()">Zapisz się</button>
-                </form>
-            </article>
-        </div>
-    
-        <div id="bugReportPopup" class="popup">
-            <span class="closeBtn" id="closeBugBtn">&times;</span>
-            <article>
-                <hgroup>
-                    <h2>Zgłoś Błąd</h2>
-                    <h3>Pomóż nam ulepszyć naszą aplikację</h3>
-                </hgroup>
-                    <form class="grid">
-                    <input type="text" id="bugname" name="bugname" placeholder="Nazwa błędu" required />
-                    <textarea id="bugdescription" name="bugdescription" placeholder="Opis błędu" required></textarea>
-                    <button type="submit" onclick="event.preventDefault()">Zgłoś</button>
-                </form>
-            </article>
-        </div>
+                <input type="text" id="bugname" name="bugname" placeholder="Nazwa błędu" required />
+                <textarea id="bugdescription" name="bugdescription" placeholder="Opis błędu" required></textarea>
+                <button type="submit" onclick="event.preventDefault()">Zgłoś</button>
+            </form>
+        </article>
+    </div>
+
 
         <script src="form.js"></script>
         <script src="Projekt_javascript.js" defer></script>
