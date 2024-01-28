@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
-/* Reset */
 * {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
@@ -8,14 +7,13 @@
     padding: 0;
 }
 
-/* style bazowe */
 body {
     padding-top: 50px;
     background: linear-gradient(#2b1055, #7595de);
     min-height: 100vh; /* Zmieniłem na 100vh, aby uniknąć nadmiernego przewijania na telefonie */
 }
 
-/* style normalne */
+/* style menu */
 header {
     position: fixed;
     top: 0;
@@ -54,7 +52,6 @@ header ul li a {
     padding: 5px 10px;
     color: #fff;
     border-radius: 20px;
-    transition: background 0.3s ease;
 }
 
 header ul li a:hover {
@@ -69,7 +66,7 @@ header ul li a:hover {
 .hamburger i {
     color: #fff;
 }
-
+/* style storny głównej */
 .container {
     position: relative;
     width: 100%;
@@ -91,6 +88,7 @@ main {
     background-color: #2b1055;
     border-radius: 10px;
 }
+
 .functions{
     display: flex;
     justify-content: center;
@@ -194,7 +192,7 @@ footer{
     font-weight: 400;
     margin: 0px 5px; 
 }
-
+/* sytle popupów i forms */
 .overlay {
     display: none;
     position: fixed;

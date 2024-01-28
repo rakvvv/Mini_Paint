@@ -1,30 +1,35 @@
+// Dodanie nasłuchiwacza zdarzeń, który czeka na załadowanie całej zawartości strony
 document.addEventListener("DOMContentLoaded", () => {
     const canvas = document.querySelector("canvas");
-    const toolButtons = document.querySelectorAll(".tool");
-    const fillColorCheckbox = document.querySelector("#fill-color");
-    const sizeSlider = document.querySelector("#size-slider");
-    const colorButtons = document.querySelectorAll(".colors .option");
-    const clearCanvasButton = document.querySelector(".clear-canvas");
-    const loadJson = document.querySelector(".load-json");
-    const colorSelector = document.querySelector("#color-selector");
-    const saveImage = document.querySelector(".save-img");
     const ctx = canvas.getContext("2d");
 
-    let prevMouseX;
-    let prevMouseY;
+    const toolButtons = document.querySelectorAll(".tool");
+    const fillColor = document.querySelector("#fill-color");
+    const clearCanvasButton = document.querySelector(".clear-canvas");
+    const loadJson = document.querySelector(".load-json");
+    const sizeSlider = document.querySelector("#size-slider");
+    const colorButtons = document.querySelectorAll(".colors .option");
+    const colorSelector = document.querySelector("#color-selector");
+    const saveImage = document.querySelector(".save-img");
+
+  // Zmienne do przechowywania informacji o stanie rysowania
+    let prevX;
+    let prevY;
     let canvasImage;
     let isDrawing = false;
+
+
+    let selectedColor = "#000";
     let selectedTool = "brush";
     let brushWidth = 6;
-    let selectedColor = "#000";
-
+ 
+    // Funkcja inicjalizująca canvas, ustawiająca jego rozmiar
     function initializeCanvas() {
-        // Ustawienie szerokości i wysokości canvasu
          canvas.width = canvas.offsetWidth;
          canvas.height = canvas.offsetHeight;
         
     }
-    
+    // Funkcja aktualizująca rozmiar canvasu, gdy zmieni się rozmiar okna
     function updateCanvasSize() {
         // Zapis aktualnego rysuneku
         const tempCanvas = document.createElement("canvas");
@@ -42,15 +47,17 @@ document.addEventListener("DOMContentLoaded", () => {
     
     window.addEventListener("resize", updateCanvasSize);
 
+    // Funkcje do rysowania różnych kształtów
+
     const drawRectangle = (x, y, width, height) => {
-        const method = fillColorCheckbox.checked ? "fillRect" : "strokeRect";
+        const method = fillColor.checked ? "fillRect" : "strokeRect";
         ctx[method](x, y, width, height);
     };
 
     const drawCircle = (x, y, radius) => {
         ctx.beginPath();
         ctx.arc(x, y, radius, 0, Math.PI * 2);
-        fillColorCheckbox.checked ? ctx.fill() : ctx.stroke();
+        fillColor.checked ? ctx.fill() : ctx.stroke();
     };
 
     const drawTriangle = (x1, y1, x2, y2, x3, y3) => {
@@ -59,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.lineTo(x2, y2);
         ctx.lineTo(x3, y3);
         ctx.closePath();
-        fillColorCheckbox.checked ? ctx.fill() : ctx.stroke();
+        fillColor.checked ? ctx.fill() : ctx.stroke();
     };
 
     const drawLine = (x1, y1, x2, y2) => {
@@ -69,35 +76,27 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.stroke();
     };
     
+    // Funkcje obsługujące rysowanie
 
     const beginDrawing = (e) => {
-        prevMouseX = e.offsetX;
-        prevMouseY = e.offsetY;
+        prevX = e.offsetX;
+        prevY = e.offsetY;
         isDrawing = true;
         canvasImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.lineWidth = brushWidth;
         ctx.strokeStyle = selectedColor;
         ctx.fillStyle = selectedColor;
     
-        // Rozpoczęcie nowej ścieżki
         ctx.beginPath();
-        ctx.moveTo(prevMouseX, prevMouseY);
-    };
-
-    const stopDrawing = () => {
-        isDrawing = false;
+        ctx.moveTo(prevX, prevY);
     };
 
     const drawing = (e) => {
         if (!isDrawing) return;
-
         ctx.putImageData(canvasImage, 0, 0);
-
         const x = e.offsetX;
         const y = e.offsetY;
-        const width = prevMouseX - x;
-        const height = prevMouseY - y;
-        const radius = Math.hypot(prevMouseX - x, prevMouseY - y);
+        const radius = Math.hypot(prevX - x, prevY - y);
 
         switch (selectedTool) {
             case "brush":
@@ -106,24 +105,29 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.stroke();
             break;
         case "eraser":
-            ctx.strokeStyle = "#fff";
+            ctx.globalCompositeOperation = "destination-out"
             ctx.lineTo(x, y);
             ctx.stroke();
             break;
         case "rectangle":
-            drawRectangle(x, y, prevMouseX - x, prevMouseY- y);
+            drawRectangle(x, y, prevX - x, prevY- y);
             break;
         case "circle":
-            drawCircle(prevMouseX, prevMouseY, radius);
+            drawCircle(prevX, prevY, radius);
             break;
         case "triangle":
-            drawTriangle(prevMouseX, prevMouseY, x, y, 2 * prevMouseX - x, y);
+            drawTriangle(prevX, prevY, x, y, 2 * prevX - x, y);
             break;
         case "line":
-            drawLine(prevMouseX, prevMouseY, x, y);
+            drawLine(prevX, prevY, x, y);
             break;
         }
     };
+
+    const stopDrawing = () => {
+        isDrawing = false;
+    };
+    // Dodanie klasy active do opcji
 
     toolButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -133,7 +137,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    //zmiana szerokosci pędzla
     sizeSlider.addEventListener("change", () => (brushWidth = sizeSlider.value));
+
 
     colorButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -160,12 +166,12 @@ document.addEventListener("DOMContentLoaded", () => {
         link.href = canvas.toDataURL();
         link.click();
       });
-      
+    // Obsługa rysowania na Desktopy
     canvas.addEventListener("mousedown", beginDrawing);
     canvas.addEventListener("mousemove", drawing);
     canvas.addEventListener("mouseup", stopDrawing);
 
-    // Obsługa rysowania na urządzeniach dotykowych
+    // Obsługa rysowania na urządzeniach mobilnych
     function getTouchPos(touchEvent) {
         const rect = canvas.getBoundingClientRect();
         return {

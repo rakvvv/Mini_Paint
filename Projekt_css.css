@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-/* Reset*/
+
 * {
     margin:0;
     padding: 0;
@@ -7,7 +7,6 @@
     font-family: 'Poppins',sans-serif;
 }
 
-/* style bazowe */
 body {
     margin: 0;
     padding: 0;
@@ -15,7 +14,7 @@ body {
     background: linear-gradient(#2b1055,#7595de);
     min-height: 100vh;
 }
-/* style noramlne*/
+/* style menu*/
 
 header{
     position:absolute;
@@ -66,7 +65,7 @@ header ul li a:hover {
 .hamburger i{
     color: #fff;
 }
-
+/* style do popupów i forms */
 .overlay {
     display: none;
     position: fixed;
