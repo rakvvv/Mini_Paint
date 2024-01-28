@@ -9,29 +9,31 @@
 </head>
 <body>
     <header>
-        <header>
-            <a href="/index.html" class="logo">Mini Paint</a>
+        <a href="/index.html" class="logo">Mini Paint</a>
+        <label class="hamburger" for="toggler"><i class="fa fa-bars"></i></label>
+        <input type="checkbox" id="toggler">
+        <div class="menu">
             <ul>
-                <li class="active">
-                    <a href="/home.html">
-                        <i class="fa fa-home"></i> 
+                <li>
+                    <a href="\home.html">
+                        <i class="fa fa-home"></i>
                         Home
                     </a>
                 </li>
-                <li>
+                <li class="">
                     <a href="#" id="openFormLink">
-                        <i class="fa-solid fa-phone"></i> 
+                        <i class="fa-solid fa-phone"></i>
                         Contact
                     </a>
                 </li>
-                <li>
+                <li class="">
                     <a href="#" id="bugReportLink">
-                        <i class="fa-solid fa-bug"></i> 
+                        <i class="fa-solid fa-bug"></i>
                         Bugs
                     </a>
                 </li>
             </ul>
-        </header>
+        </div>
     </header>
 
 
@@ -40,15 +42,25 @@
         <img src="paint.png" alt="">
     </section>
     
-    <main>
+    <main id="about">
         <section class="text-content">
-            <h2>About Painting</h2>
-            <p>Introduction to the art of painting, its history, and significance.</p>
+            <h2>Czym jest Mini Paint</h2>
+            <p>Mini Paint to interaktywna aplikacja webowa służąca do rysowania.
+                Aplikacja oferuje rysowanie lini,kształtów,wybór kolorów,narzędzie do ścierania,zapis obrazu, odczyt z pliku json oraz
+                wyczyszczenie całej tablicy.
+            </p>
         </section>
-
         <section class="text-content">
-            <h2>Our Painting Service</h2>
-            <p>Detailed information about your painting services, techniques, and styles.</p>
+            <h2>Proces Rozwoju</h2>
+            <p>Projekt rozpoczął się od etapu planowania, gdzie skupiłem się na projektowaniu interfejsu użytkownika, zapewniającego łatwość obsługi. 
+                Następnie implementacja, gdzie skoncentrowałem się na programowaniu funkcjonalności takich jak rysowanie linii,
+                wybór kolorów, gumka i inne. Każdy etap projektu był dla mnie okazją do nauki oraz rozwoju moich umiejetnosci w JavaScript, CSS i HTML.</p>
+        </section>
+        <section class="text-content">
+            <h2>Napotkane Problemy</h2>
+            <p>Jednym z głównych wyzwań było przy implementacji narzędzi rysowania i obsługi kształtów dla telefonów.
+                Musiałem przerobić większość aplikacji żeby całość była dobrze zgrana.
+                Zmagania te pomogły mi lepiej zrozumieć zarządzanie stanem aplikacji.</p>
         </section>
     </main>
 
@@ -83,8 +95,27 @@
             </form>
         </article>
     </div>
-
-   
+    <footer>
+        <div class="footerContainer">
+            <div class="socialIcones">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+            <div class="footerMenu">
+                <ul>
+                    <li><a href="/index.html">Mini Paint</a></li>
+                    <li><a href="/home.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footerBottom">
+            <p>Designed by<span class="designer">Rafał Liszcz</span></p>
+        </div>
+    </footer>
     <script src="form.js"></script>
 </body>
 </html>

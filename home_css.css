@@ -1,40 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-/* Reset*/
+
+/* Reset */
 * {
     box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 /* style bazowe */
 body {
-    margin: 0;
-    padding: 0;
     padding-top: 50px;
-    background: linear-gradient(#2b1055,#7595de);
-    min-height: 200vh;
+    background: linear-gradient(#2b1055, #7595de);
+    min-height: 100vh; /* Zmieniłem na 100vh, aby uniknąć nadmiernego przewijania na telefonie */
 }
-/* style noramlne*/
 
-header{
-    position:fixed;
+/* style normalne */
+header {
+    position: fixed;
     top: 0;
     left: 0;
-    height: 10%;
     width: 100%;
-    padding: 30px 100px;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #2b1055;
     z-index: 998;
-    opacity: 99%;
 }
 
 header .logo {
-    color:#fff;
+    color: #fff;
     font-weight: 700;
     text-decoration: none;
-    font-size: 2em;
+    font-size: 1.5em;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -43,42 +42,61 @@ header ul {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-header ul li{
     list-style: none;
-    margin-left: 20px
-}
-header ul li a{
-text-decoration: none;
-padding: 5px 15px;
-color: #fff;
-border-radius:20px;
-transition: all 0.3s ease;
-}
-header ul li a:hover,
-header ul li a.active {
-    background: #fff;
-    color:#2b1055;
 }
 
-.container{
+header ul li {
+    margin-left: 20px;
+}
+
+header ul li a {
+    text-decoration: none;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 20px;
+    transition: background 0.3s ease;
+}
+
+header ul li a:hover {
+    background: #fff;
+    color: #2b1055;
+}
+
+#toggler, .hamburger {
+    display: none;
+}
+
+.hamburger i {
+    color: #fff;
+}
+
+.container {
     position: relative;
     width: 100%;
-    height: 100vh;
-    padding: 50px;
+    padding: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-main{
+main {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding-top: 100px;
+    padding-top: 50px;
+    margin: 90px;
+    padding: 20px;
+    border: #7595de;
+    background-color: #2b1055;
+    border-radius: 10px;
 }
+.functions{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .text-content {
     display: flex;
     align-items: center;
@@ -86,14 +104,15 @@ main{
     flex-direction: column;
     margin: 20px;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background: linear-gradient(#6c33c9, #43145e);;
     border-radius: 10px;
     animation: fadeIn 2s;
-    width: 1500px;
+    max-width: 80%;
+    color: #fff;
 }
 
 .image-gallery img {
-    width: 100%;
+    width: 120%;
     height: auto;
     margin-top: 10px;
     transition: transform 0.5s;
@@ -103,13 +122,79 @@ main{
 .image-gallery img:hover {
     transform: scale(1.1);
 }
-#text{
+
+#text {
     position: absolute;
     color: #fff;
     white-space: nowrap;
     font-size: 5.5vw;
-    
 }
+footer{
+    background-color: #2b1055;
+}
+.footerContainer{
+    width: 100%;
+    padding: 70px 30px 20px;
+}
+.socialIcones{
+    display: flex;
+    justify-content: center;
+}
+.socialIcones a{
+    text-decoration: none;
+    padding: 10px;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 20px;
+}
+.socialIcones a i{
+    font-size: 2em;
+    color: #2b1055;
+    opacity: 0.9;
+}
+.socialIcones a:hover{
+    background-color: #2b1055;
+    transition: 0.5s;
+}
+.socialIcones a:hover i{
+    color: #fff;
+    transition: 0.5s;
+}
+.footerMenu{
+    margin:10px;
+}
+.footerMenu ul{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+.footerMenu ul li a{
+    color:#fff;
+    margin:20px;
+    text-decoration: none;
+    font-size:1em;
+    opacity:0.7;
+    transition:0.5s;
+}
+.footerMenu ul li a:hover{
+    opacity: 1;
+}
+.footerBottom{
+    background: linear-gradient(#2b1055, #130025);
+    padding: 20px;
+    text-align: center;
+}
+.footerBottom p{
+    color: #fff;
+}
+.designer{
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0px 5px; 
+}
+
 .overlay {
     display: none;
     position: fixed;
@@ -119,8 +204,8 @@ main{
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
-  }
-  
+}
+
 .popup {
     display: none;
     position: fixed;
@@ -133,12 +218,13 @@ main{
     z-index: 1000;
     opacity: 0;
     transition: opacity 0.4s ease;
-  }
-  
+}
+
 .popup.show {
     display: block;
     opacity: 1;
-  }
+}
+
 .closeBtn {
     position: absolute;
     top: 10px;
@@ -148,6 +234,7 @@ main{
     color: #2b1055;
     font-weight: bold;
 }
+
 form {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
@@ -183,20 +270,23 @@ button:hover {
 .popup article {
     text-align: center;
 }
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
 @media only screen and (max-width: 800px) {
+    body {
+        padding-top: 10px;
+    }
+
     header {
-        padding: 15px;
-        flex-direction: column;
-        text-align: center;
+        padding: 10px;
     }
 
     header .logo {
-        margin-bottom: 15px;
+        font-size: 1.2em;
     }
 
     header ul {
@@ -210,5 +300,53 @@ button:hover {
 
     header ul li a {
         padding: 8px 15px;
+    }
+
+    #toggler:checked ~ .menu {
+        padding: 20px;
+        max-height: 100%;
+        overflow: visible;
+        opacity: 1;
+    }
+
+    .hamburger {
+        display: inline-flex;
+    }
+
+    .menu {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease, opacity 0.5s ease;
+    }
+    main {
+        margin-top: 10px;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .text-content {
+        width: 100%;
+    }
+
+    .image-gallery img {
+        margin-top: 70px;
+    }
+
+    #text {
+        font-size: 7vw;
+        margin-top: 50px;
+    }
+    .footerMenu ul{
+        flex-direction: column;
+    }
+    .footerMenu ul li{
+        width: 100%;
+        text-align: center;
+        margin:10px;
+    }
+    .socialIcones a{
+        margin: 10px;
     }
 }

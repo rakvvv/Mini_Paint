@@ -12,7 +12,6 @@ body {
     margin: 0;
     padding: 0;
     padding-top: 30px;
-    
     background: linear-gradient(#2b1055,#7595de);
     min-height: 100vh;
 }
@@ -57,10 +56,15 @@ header ul li a{
     border-radius:20px;
     transition: all 0.3s ease;
 }
-header ul li a:hover,
-header ul li a.active {
+header ul li a:hover {
     background: #fff;
     color:#2b1055;
+}
+#toggler, .hamburger{
+    display: none;
+}
+.hamburger i{
+    color: #fff;
 }
 
 .overlay {
@@ -139,15 +143,31 @@ button:hover {
 
 @media only screen and (max-width: 800px) {
     header {
+        width: 100%;
         padding: 15px;
         flex-direction: column;
         text-align: center;
     }
-
+    .hamburger{
+        display: inline-flex;
+    }
+    .menu{
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0; 
+        transition: max-height 0.5s ease, opacity 0.5s ease; 
+    }
+    
+    #toggler:checked~.menu{
+        padding: 20px;
+        max-height: 100%; 
+        overflow: visible;
+        opacity: 1; 
+    }
     header .logo {
         margin-bottom: 15px;
     }
-
     header ul {
         flex-direction: column;
     }
