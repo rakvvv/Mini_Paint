@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: jsdoc-script.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: jsdoc-script.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Funkcja inicjalizująca canvas, ustawiająca jego rozmiar.
+ */
+function initializeCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+}
+
+/**
+ * Funkcja aktualizująca rozmiar canvasu, gdy zmieni się rozmiar okna.
+ */
+function updateCanvasSize() {
+    // Zapis aktualnego rysunku
+    const tempCanvas = document.createElement("canvas");
+    const tempCtx = tempCanvas.getContext("2d");
+    tempCanvas.width = canvas.width;
+    tempCanvas.height = canvas.height;
+    tempCtx.drawImage(canvas, 0, 0);
+
+    // Aktualizuj rozmiar canvasu
+    initializeCanvas();
+
+    // Przywróć rysunek
+    ctx.drawImage(tempCanvas, 0, 0);
+}
+
+window.addEventListener("resize", updateCanvasSize);
+
+/**
+ * Funkcja rysująca prostokąt.
+ * @param {number} x - Współrzędna x lewego górnego rogu prostokąta.
+ * @param {number} y - Współrzędna y lewego górnego rogu prostokąta.
+ * @param {number} width - Szerokość prostokąta.
+ * @param {number} height - Wysokość prostokąta.
+ */
+const drawRectangle = (x, y, width, height) => {
+    const method = fillColor.checked ? "fillRect" : "strokeRect";
+    ctx[method](x, y, width, height);
+};
+
+/**
+ * Funkcja rysująca okrąg.
+ * @param {number} x - Współrzędna x środka okręgu.
+ * @param {number} y - Współrzędna y środka okręgu.
+ * @param {number} radius - Promień okręgu.
+ */
+const drawCircle = (x, y, radius) => {
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    fillColor.checked ? ctx.fill() : ctx.stroke();
+};
+
+/**
+ * Funkcja rysująca trójkąt.
+ * @param {number} x1 - Współrzędna x pierwszego punktu trójkąta.
+ * @param {number} y1 - Współrzędna y pierwszego punktu trójkąta.
+ * @param {number} x2 - Współrzędna x drugiego punktu trójkąta.
+ * @param {number} y2 - Współrzędna y drugiego punktu trójkąta.
+ * @param {number} x3 - Współrzędna x trzeciego punktu trójkąta.
+ * @param {number} y3 - Współrzędna y trzeciego punktu trójkąta.
+ */
+const drawTriangle = (x1, y1, x2, y2, x3, y3) => {
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.lineTo(x3, y3);
+    ctx.closePath();
+    fillColor.checked ? ctx.fill() : ctx.stroke();
+};
+
+/**
+ * Funkcja rysująca linię.
+ * @param {number} x1 - Współrzędna x początku linii.
+ * @param {number} y1 - Współrzędna y początku linii.
+ * @param {number} x2 - Współrzędna x końca linii.
+ * @param {number} y2 - Współrzędna y końca linii.
+ */
+const drawLine = (x1, y1, x2, y2) => {
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+};
+
+/**
+ * Funkcja rozpoczynająca rysowanie.
+ * @param {MouseEvent} e - Obiekt zdarzenia myszy.
+ */
+const beginDrawing = (e) => {
+    prevX = e.offsetX;
+    prevY = e.offsetY;
+    isDrawing = true;
+    canvasImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    ctx.lineWidth = brushWidth;
+    ctx.strokeStyle = selectedColor;
+    ctx.fillStyle = selectedColor;
+
+    ctx.beginPath();
+    ctx.moveTo(prevX, prevY);
+};
+
+/**
+ * Funkcja obsługująca rysowanie.
+ * @param {MouseEvent} e - Obiekt zdarzenia myszy.
+ */
+const drawing = (e) => {
+    if (!isDrawing) return;
+    ctx.putImageData(canvasImage, 0, 0);
+    const x = e.offsetX;
+    const y = e.offsetY;
+    const radius = Math.hypot(prevX - x, prevY - y);
+
+    switch (selectedTool) {
+        case "brush":
+            ctx.strokeStyle = selectedColor;
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            break;
+        case "eraser":
+            ctx.strokeStyle = "#fff";
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            break;
+        case "rectangle":
+            drawRectangle(x, y, prevX - x, prevY - y);
+            break;
+        case "circle":
+            drawCircle(prevX, prevY, radius);
+            break;
+        case "triangle":
+            drawTriangle(prevX, prevY, x, y, 2 * prevX - x, y);
+            break;
+        case "line":
+            drawLine(prevX, prevY, x, y);
+            break;
+    }
+};
+
+/**
+ * Funkcja zatrzymująca rysowanie.
+ */
+const stopDrawing = () => {
+    isDrawing = false;
+};
+
+/**
+ * Funkcja do pobierania pozycji dotyku na ekranie.
+ * @param {TouchEvent} touchEvent - Obiekt zdarzenia dotyku.
+ * @returns {Object} Obiekt z współrzędnymi x i y dotyku.
+ */
+function getTouchPos(touchEvent) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+        x: touchEvent.touches[0].clientX - rect.left,
+        y: touchEvent.touches[0].clientY - rect.top
+    };
+}
+
+/**
+ * Obsługa rysowania na urządzeniach mobilnych.
+ */
+canvas.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    const touchPos = getTouchPos(e);
+    beginDrawing({ offsetX: touchPos.x, offsetY: touchPos.y });
+});
+
+canvas.addEventListener("touchmove", (e) => {
+    const touchPos = getTouchPos(e);
+    drawing({ offsetX: touchPos.x, offsetY: touchPos.y });
+});
+
+canvas.addEventListener("touchend", (e) => {
+    stopDrawing();
+});
+
+/**
+ * Funkcja wczytująca dane JSON i rysująca figury na canvasie na podstawie danych.
+ */
+loadJson.addEventListener("click", () => {
+    fetch("figury.json")
+        .then(response => response.json())
+        .then(data => {
+            drawShapesFromData(data.shapes);
+        })
+        .catch(error => {
+            console.error("Błąd podczas wczytywania danych JSON:", error);
+        });
+});
+
+/**
+ * Funkcja rysująca figury na canvasie na podstawie danych JSON.
+ * @param {Array} shapesData - Tablica obiektów opisujących figury do narysowania.
+ */
+function drawShapesFromData(shapesData) {
+    shapesData.forEach(shape => {
+        switch (shape.type) {
+            case "rectangle":
+                drawRectangle(shape.x, shape.y, shape.width, shape.height);
+                break;
+            case "circle":
+                drawCircle(shape.x, shape.y, shape.radius);
+                break;
+            case "triangle":
+                drawTriangle(shape.x1, shape.y1, shape.x2, shape.y2, shape.x3, shape.y3);
+                break;
+        }
+    });
+}
+
+initializeCanvas();
+updateCanvasSize();
+
+/**
+ * Obsługuje kliknięcie na link otwierający formularz i wyświetla go.
+ * @param {Event} event - Obiekt zdarzenia kliknięcia.
+ */
+ document.getElementById("openFormLink").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("formPopup").classList.add("show");
+    document.getElementById("overlay").style.display = "block";
+});
+
+/**
+ * Obsługuje kliknięcie na overlay i zamyka aktywne popupy.
+ * @param {Event} event - Obiekt zdarzenia kliknięcia.
+ */
+document.getElementById("overlay").addEventListener("click", function(event) {
+    if (event.target === this) {
+        document.querySelectorAll(".popup.show").forEach(function(popup) {
+            popup.classList.remove("show");
+        });
+        this.style.display = "none";
+    }
+});
+
+/**
+ * Obsługuje kliknięcie na przycisk zamknięcia formularza.
+ */
+document.getElementById("closeBtn").addEventListener("click", function() {
+    document.getElementById("formPopup").classList.remove("show");
+    document.getElementById("overlay").style.display = "none";
+});
+
+/**
+ * Obsługuje kliknięcie na link i wyświetla formularz.
+ * @param {Event} event - Obiekt zdarzenia kliknięcia.
+ */
+document.getElementById("bugReportLink").addEventListener("click", function(event) {
+    event.preventDefault();
+    document.getElementById("bugReportPopup").classList.add("show");
+    document.getElementById("overlay").style.display = "block";
+});
+
+/**
+ * Obsługuje kliknięcie na przycisk zamknięcia formularza zgłaszania błędu.
+ */
+document.getElementById("closeBugBtn").addEventListener("click", function() {
+    document.getElementById("bugReportPopup").classList.remove("show");
+    document.getElementById("overlay").style.display = "none";
+});
+
+/**
+ * Obsługuje submit formularza, sprawdza dane i wyświetla odpowiednie alerty.
+ * @param {Event} event - Obiekt zdarzenia submit formularza.
+ */
+document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var firstname = document.getElementById('firstname').value;
+    var email = document.getElementById('email').value;
+    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    if (!firstname) {
+        alert('Proszę wpisać imię.');
+        return false;
+    }
+
+    if (!email.match(emailRegex)) {
+        alert('Proszę wpisać prawidłowy adres email.');
+        return false;
+    }
+    alert('Formularz wysłany!'); 
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#beginDrawing">beginDrawing</a></li><li><a href="global.html#drawCircle">drawCircle</a></li><li><a href="global.html#drawLine">drawLine</a></li><li><a href="global.html#drawRectangle">drawRectangle</a></li><li><a href="global.html#drawShapesFromData">drawShapesFromData</a></li><li><a href="global.html#drawTriangle">drawTriangle</a></li><li><a href="global.html#drawing">drawing</a></li><li><a href="global.html#getTouchPos">getTouchPos</a></li><li><a href="global.html#initializeCanvas">initializeCanvas</a></li><li><a href="global.html#stopDrawing">stopDrawing</a></li><li><a href="global.html#updateCanvasSize">updateCanvasSize</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jan 29 2024 15:50:36 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,34 +1,69 @@
 
-.container{
-    display: flex;
-    flex-direction: row-reverse;
-    align-content: center;
-    justify-content: center;
-    min-height: 100vh;
-    width: 100%;
-    gap:10px;
-    padding: 10px;
-    max-width: 2000px;
-    margin-top: 90px;
-}
+/*
+Kontener
 
-/* style do tablicy przyborów */
-.tool_board .row1,
-.tool_board .row2,
-.tool_board .row3,
-.tool_board .row4 {
-    background: #7595de;
-    border-radius: 7px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+Ta klasa definiuje elastyczny kontener z dziećmi wyśrodkowanymi zarówno w pionie, jak i poziomie. 
+Jest przeznaczona do układu o pełnej wysokości widoku z konfigurowalnym odstępem i wcięciami.
+Kontener ma maksymalną szerokość i górny margines.
 
+
+Markup:
+    .container {
+        display: flex;
+        flex-direction: row-reverse;
+        align-content: center;
+        justify-content: center;
+        min-height: 100vh;
+        width: 100%;
+        gap: 10px;
+        padding: 10px;
+        max-width: 2000px;
+        margin-top: 90px;
+    }
+
+Styleguide: 1.0
+*/
+/*
+Narzędzia
+
+Style dla wierszy w tablicy narzędzki, stosując jednolite tło, zaokrąglenia rogów, margines i właściwości flex.
+
+Markup:
+    .tool_board .row1,
+    .tool_board .row2,
+    .tool_board .row3,
+    .tool_board .row4 {
+        background: #7595de;
+        border-radius: 7px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+Styleguide: 2.0
+*/
+
+
+/*
+Narzędzia style opcji
+
+Styl marginesu dla opcji wewnątrz tablicy narzędzi.
+
+Markup:
 .tool_board .options {
     margin: 20px 0 0 5px;
 }
 
+Styleguide: 2.1
+*/
+
+/*
+Narzędzia generalne opcje
+
+Ogólny styl dla opcji, obejmujący układ, kursor i margines.
+
+Markup:
 .tool_board .options .option {
     display: flex;
     align-items: center;
@@ -36,103 +71,206 @@
     cursor: pointer;
 }
 
-.option :where(span,label){
-    color:white;
+Styleguide: 2.2
+*/
+
+/*
+Style elemtow w opcjach
+
+Stylowanie elementów tekstowych w opcjach, obejmujące kolor i odstęp wewnętrzny.
+
+Markup:
+.option :where(span, label) {
+    color: white;
     cursor: pointer;
-    padding-left:10px;
-}
-.option:is(:hover,.active) :where(span,label){
-    color:#2b1055
+    padding-left: 10px;
 }
 
-.option #size-slider{
+Styleguide: 2.3
+*/
+
+/*
+Opcje Hover i Active
+
+Styl dla stanów hover i aktywnych opcji, zmieniający kolor tekstu.
+
+Styleguide: 2.4
+*/
+
+/*
+Opcja Slider 
+
+Stylowanie suwaka rozmiaru w opcjach, z szerokością i kolorem akcentu.
+
+Markup:
+.option #size-slider {
     width: 100%;
     margin-top: 10px;
     accent-color: #2b1055;
 }
-.colors .options{
+Styleguide: 2.5
+*/
+
+/*
+Opcje kolrów
+
+Styl układu dla opcji kolorów, obejmujący właściwości wyświetlania i wyrównania.
+
+Markup:
+.colors .options {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-
 }
-.colors .option{
+
+Styleguide: 2.6
+*/
+
+/*
+Style dla opcji kolorów
+
+Stylizacja dla poszczególnych opcji kolorów, definiująca rozmiar, margines i pozycję.
+
+Markup:
+.colors .option {
     height: 40px;
     width: 40px;
-   
     margin-top: 3px;
-    position:relative;
+    position: relative;
 }
-.colors .option:nth-child(1){
+Styleguide: 2.7
+*/
+
+/* 
+Wygląd opcji kolorów
+
+Konkretne kolory tła i obramowania dla pierwszych trzech opcji kolorów.
+
+Markup:
+.colors .option:nth-child(1) {
     background-color: white;
     border: 1px solid grey;
 }
-.colors .option:nth-child(2){
+.colors .option:nth-child(2) {
     background-color: black;
 }
-.colors .option:nth-child(3){
+.colors .option:nth-child(3) {
     background-color: red;
 }
 
-.colors .option.selected::before{
+Styleguide: 2.8
+*/
+/* 
+Pseudo-element dla kolorów
+
+Styl dla stanu wybranego w opcjach kolorów, obejmujący pseudo-element dla wizualnego wskazania.
+
+Markup:
+.colors .option.selected::before {
     position: absolute;
     content: "";
-    top:50%;
-    left:50%;
+    top: 50%;
+    left: 50%;
     height: 30px;
     width: 30px;
-    background:inherit;
+    background: inherit;
     border-radius: inherit;
     border: 2px solid #7595de;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
-.option #color-selector{
+Styleguide: 2.9
+*/
+/*
+Ukryty selektor kolorów
+
+Ukryte pole wyboru koloru, które staje się widoczne po interakcji.
+
+Markup:
+.option #color-selector {
     opacity: 0;
     cursor: pointer;
 }
 
-.buttons button{
+Styleguide: 2.10
+*/
+
+/*
+Pzyciski
+
+Ogólny styl dla przycisków, obejmujący rozmiar, kolor, odstęp wewnętrzny i margines.
+
+Markup:
+.buttons button {
     width: 80%;
     color: white;
     padding: 11px 0;
     margin-bottom: 13px;
     background: none;
     border-radius: 5px;
-    font-size:0.9rem ;
+    font-size: 0.9rem;
 }
-.buttons .clear-canvas{
-    color:white;
+
+Styleguide: 3.0
+*/
+
+/*
+Style dla Różnych przycisków
+
+Konkretne style dla różnych rodzajów przycisków, w tym koloru i obramowania.
+
+Markup:
+.buttons .clear-canvas {
+    color: white;
     border: 1px solid #2b1055;
     transition: all 0.3s ease;
 }
-.clear-canvas:hover{
-background: #2b1055;
+.clear-canvas:hover {
+    background: #2b1055;
 }
-.buttons .save-img{
-    background:#2b1055;
-    border: 10px solid #2b1055;
-}
-.buttons .load-json{
-    background:#2b1055;
-    border: 10px solid #2b1055;
-}
-/* canvas */
-.drawing_board{
-    background:#fff;
-    border-radius: 3px;
-    flex:1;
-   
-}
-.drawing_board canvas{
-    width: 100%;
-    height:100%;
-   
+.buttons .save-img, .buttons .load-json {
+    background: #2b1055;
+    border: 1px solid #2b1055;
 }
 
+Styleguide: 3.1
+*/
+
+/*
+Tablica do rysowania
+
+Styl dla obszaru tablicy do rysowania, obejmujący tło, zaokrąglenia rogów i właściwości flex.
+
+Markup:
+.drawing_board {
+    background: #fff;
+    border-radius: 3px;
+    flex: 1;
+}
+
+Styleguide: 4.0
+*/
+/*
+Canvas
+
+Style dla elementu canvas wewnątrz obszaru tablicy do rysowania.
+
+Markup:
+.drawing_board canvas {
+    width: 100%;
+    height: 100%;
+}
+
+Styleguide: 4.1
+*/
+/*
+Media Queries dla Painta
+
+Dostosowania responsywnego projektu dla mniejszych ekranów.
+
+Markup:
 @media only screen and (max-width: 800px) {
-   
     .container {
         flex-direction: column;
         align-items: center;
@@ -140,47 +278,41 @@ background: #2b1055;
         padding: 5px;
         margin-top: 200px;
     }
-
     .tool_board {
         margin-right: 20px;
         margin-left: 20px;
         display: flex;
-        width: inherit; 
+        width: inherit;
         flex-direction: column;
         justify-content: space-evenly;
-        
     }
-
     .tool_board .row1,
     .tool_board .row2,
     .tool_board .row3,
-    .tool_board .row4 { 
-        margin-bottom: 10px; 
+    .tool_board .row4 {
+        margin-bottom: 10px;
     }
-
     .row .options {
-        margin: 5px 0 0 5px; 
+        margin: 5px 0 0 5px;
     }
-
     .row .options .option {
-        margin-bottom: 5px; 
+        margin-bottom: 5px;
     }
-
     .option #size-slider {
-        margin-top: 5px; 
+        margin-top: 5px;
     }
-   
-
     .buttons button {
-        padding: 8px 0; 
-        margin-bottom: 10px; 
+        padding: 8px 0;
+        margin-bottom: 10px;
     }
-
     .tool_board {
-        max-width: 100%; 
+        max-width: 100%;
     }
-    .drawing_board canvas{
-        width: 100%;
-        height:500px;
+    .drawing_board canvas {
+        height: 500px;
     }
 }
+
+
+Styleguide: 5.0
+*/

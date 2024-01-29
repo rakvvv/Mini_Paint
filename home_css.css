@@ -10,7 +10,7 @@
 body {
     padding-top: 50px;
     background: linear-gradient(#2b1055, #7595de);
-    min-height: 100vh; /* Zmieniłem na 100vh, aby uniknąć nadmiernego przewijania na telefonie */
+    min-height: 100vh; 
 }
 
 /* style menu */
