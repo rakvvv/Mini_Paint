@@ -118,7 +118,7 @@
             <form class="grid">
                 <input type="text" id="firstname" name="firstname" placeholder="Imię" required />
                 <input type="email" id="email" name="email" placeholder="Email" required />
-                <button type="submit">Wyślij</button>
+                <button type="submit" onclick="event.preventDefault()">Wyślij</button>
             </form>
         </article>
     </div>
@@ -133,7 +133,7 @@
                 <form class="grid">
                 <input type="text" id="bugname" name="bugname" placeholder="Nazwa błędu" required />
                 <textarea id="bugdescription" name="bugdescription" placeholder="Opis błędu" required></textarea>
-                <button type="submit">Zgłoś</button>
+                <button type="submit" onclick="event.preventDefault()">Zgłoś</button>
             </form>
         </article>
     </div>

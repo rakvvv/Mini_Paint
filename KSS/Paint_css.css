@@ -1,0 +1,186 @@
+
+.container{
+    display: flex;
+    flex-direction: row-reverse;
+    align-content: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    gap:10px;
+    padding: 10px;
+    max-width: 2000px;
+    margin-top: 90px;
+}
+
+/* style do tablicy przyborów */
+.tool_board .row1,
+.tool_board .row2,
+.tool_board .row3,
+.tool_board .row4 {
+    background: #7595de;
+    border-radius: 7px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tool_board .options {
+    margin: 20px 0 0 5px;
+}
+
+.tool_board .options .option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.option :where(span,label){
+    color:white;
+    cursor: pointer;
+    padding-left:10px;
+}
+.option:is(:hover,.active) :where(span,label){
+    color:#2b1055
+}
+
+.option #size-slider{
+    width: 100%;
+    margin-top: 10px;
+    accent-color: #2b1055;
+}
+.colors .options{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.colors .option{
+    height: 40px;
+    width: 40px;
+   
+    margin-top: 3px;
+    position:relative;
+}
+.colors .option:nth-child(1){
+    background-color: white;
+    border: 1px solid grey;
+}
+.colors .option:nth-child(2){
+    background-color: black;
+}
+.colors .option:nth-child(3){
+    background-color: red;
+}
+
+.colors .option.selected::before{
+    position: absolute;
+    content: "";
+    top:50%;
+    left:50%;
+    height: 30px;
+    width: 30px;
+    background:inherit;
+    border-radius: inherit;
+    border: 2px solid #7595de;
+    transform: translate(-50%,-50%);
+}
+
+.option #color-selector{
+    opacity: 0;
+    cursor: pointer;
+}
+
+.buttons button{
+    width: 80%;
+    color: white;
+    padding: 11px 0;
+    margin-bottom: 13px;
+    background: none;
+    border-radius: 5px;
+    font-size:0.9rem ;
+}
+.buttons .clear-canvas{
+    color:white;
+    border: 1px solid #2b1055;
+    transition: all 0.3s ease;
+}
+.clear-canvas:hover{
+background: #2b1055;
+}
+.buttons .save-img{
+    background:#2b1055;
+    border: 10px solid #2b1055;
+}
+.buttons .load-json{
+    background:#2b1055;
+    border: 10px solid #2b1055;
+}
+/* canvas */
+.drawing_board{
+    background:#fff;
+    border-radius: 3px;
+    flex:1;
+   
+}
+.drawing_board canvas{
+    width: 100%;
+    height:100%;
+   
+}
+
+@media only screen and (max-width: 800px) {
+   
+    .container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        margin-top: 200px;
+    }
+
+    .tool_board {
+        margin-right: 20px;
+        margin-left: 20px;
+        display: flex;
+        width: inherit; 
+        flex-direction: column;
+        justify-content: space-evenly;
+        
+    }
+
+    .tool_board .row1,
+    .tool_board .row2,
+    .tool_board .row3,
+    .tool_board .row4 { 
+        margin-bottom: 10px; 
+    }
+
+    .row .options {
+        margin: 5px 0 0 5px; 
+    }
+
+    .row .options .option {
+        margin-bottom: 5px; 
+    }
+
+    .option #size-slider {
+        margin-top: 5px; 
+    }
+   
+
+    .buttons button {
+        padding: 8px 0; 
+        margin-bottom: 10px; 
+    }
+
+    .tool_board {
+        max-width: 100%; 
+    }
+    .drawing_board canvas{
+        width: 100%;
+        height:500px;
+    }
+}

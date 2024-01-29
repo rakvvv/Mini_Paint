@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.stroke();
             break;
         case "eraser":
-            ctx.globalCompositeOperation = "destination-out"
+            ctx.strokeStyle = "#fff";
             ctx.lineTo(x, y);
             ctx.stroke();
             break;

@@ -27,3 +27,22 @@ document.getElementById("closeBugBtn").addEventListener("click", function() {
     document.getElementById("bugReportPopup").classList.remove("show");
     document.getElementById("overlay").style.display = "none";
 });
+
+document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var firstname = document.getElementById('firstname').value;
+    var email = document.getElementById('email').value;
+    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+    if (!firstname) {
+        alert('Proszę wpisać imię.');
+        return false;
+    }
+
+    if (!email.match(emailRegex)) {
+        alert('Proszę wpisać prawidłowy adres email.');
+        return false;
+    }
+    alert('Formularz wysłany!'); 
+});
