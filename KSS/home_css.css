@@ -1,5 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+/*
+Globalne Style dla HomePage
 
+Style globalne, takie jak box-sizing, czcionka i resetowanie marginesów i paddingu.
+
+**Universal Selector (*):**
+-box-sizing: border-box - Ustawia box-sizing na border-box dla wszystkich elementów.
+-font-family: 'Poppins', sans-serif - Ustawia domyślną czcionkę na Poppins.
+-margin: 0 i padding: 0 - Resetuje domyślne marginesy i paddingi.
+
+Markup: 
 * {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
@@ -7,13 +16,43 @@
     padding: 0;
 }
 
+Styleguide: 10.0
+*/
+
+/*
+Body dla Strony Głównej
+
+Stylizacja dla elementu body, w tym padding-top i tło.
+
+Background: Ustawia gradient tła od #2b1055 do #7595de.
+Padding and Height: padding-top: 50px i min-height: 100vh.
+
+Markup:
 body {
     padding-top: 50px;
     background: linear-gradient(#2b1055, #7595de);
-    min-height: 100vh; /* Zmieniłem na 100vh, aby uniknąć nadmiernego przewijania na telefonie */
+    min-height: 100vh; 
 }
 
-/* style menu */
+Styleguide: 11.0
+*/
+
+/*
+Menu
+
+Stylizacja dla menu, w tym nagłówka, linków i przycisku "hamburger".
+
+**ositioning and Layout:** Fixed, z szerokością 100%, i wyświetlanie flex.
+**Styling:** Tło #2b1055, padding i z-index.
+**Logo:**
+Styl tekstu: białe, pogrubione, bez dekoracji.
+**Transformacja tekstu:** uppercase, liter-spacing 2px.
+Menu:
+Lista bez stylu z marginesem 20px między elementami.
+Style dla linków: bez dekoracji, padding, kolory i border-radius.
+Hover effect dla linków.
+
+Marukup:
 header {
     position: fixed;
     top: 0;
@@ -26,7 +65,6 @@ header {
     background-color: #2b1055;
     z-index: 998;
 }
-
 header .logo {
     color: #fff;
     font-weight: 700;
@@ -35,38 +73,46 @@ header .logo {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
-
 header ul {
     display: flex;
     justify-content: center;
     align-items: center;
     list-style: none;
 }
-
 header ul li {
     margin-left: 20px;
 }
-
 header ul li a {
     text-decoration: none;
     padding: 5px 10px;
     color: #fff;
     border-radius: 20px;
 }
-
 header ul li a:hover {
     background: #fff;
     color: #2b1055;
 }
-
 #toggler, .hamburger {
     display: none;
 }
-
 .hamburger i {
     color: #fff;
 }
-/* style storny głównej */
+
+Styleguide: 12.0
+*/
+
+/*
+Strona Główna
+
+Stylizacja dla kontenera, głównego elementu i funkcji.
+
+**.container:** Flex layout z centrowaniem elementów.
+**main:** Flex, kierunek kolumnowy, padding, margines, border i tło.
+**.functions:** Flex layout z możliwością zawijania elementów.
+
+Markup: 
+
 .container {
     position: relative;
     width: 100%;
@@ -75,7 +121,6 @@ header ul li a:hover {
     justify-content: center;
     align-items: center;
 }
-
 main {
     display: flex;
     justify-content: center;
@@ -88,13 +133,24 @@ main {
     background-color: #2b1055;
     border-radius: 10px;
 }
-
-.functions{
+.functions {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
+Styleguide: 13.0
+*/
+
+
+/*
+Treść Strony Głównej
+
+Stylizacja dla tekstu, w tym tła, animacji i koloru.
+**.text-content:** Flex, centrowanie, marginesy, padding, gradient tła, animacja fadeIn, max-width, kolor i wyrównanie tekstu.
+
+
+Markup: 
 .text-content {
     display: flex;
     align-items: center;
@@ -110,6 +166,18 @@ main {
     text-align: center;
 }
 
+
+Styleguide: 14.0
+*/
+
+/*
+Obraz
+
+Stylizacja dla obrazu, w tym szerokości i efektu przy najechaniu.
+
+**.image:** Styl dla obrazów i efekt hover.
+
+Markup:
 .image img {
     width: 120%;
     height: auto;
@@ -117,165 +185,178 @@ main {
     transition: transform 0.5s;
     opacity: 20%;
 }
-
 .image img:hover {
     transform: scale(1.1);
 }
 
+Styleguide: 15.0
+*/
+
+/*
+Tekst nad Obrazem
+
+Stylizacja dla tekstu nad obrazem, w tym koloru i rozmiaru czcionki.
+
+Markup: 
 #text {
     position: absolute;
     color: #fff;
     white-space: nowrap;
     font-size: 5.5vw;
 }
-footer{
+
+Styleguide: 15.1
+*/
+
+/*
+Stopka
+
+Stylizacja dla stopki, w tym tła, marginesów i koloru tekstu.
+
+**.footerContainer:** Szerokość 100%, padding.
+
+
+
+Markup: 
+footer {
     background-color: #2b1055;
 }
-.footerContainer{
+.footerContainer {
     width: 100%;
     padding: 70px 30px 20px;
 }
-.socialIcones{
+
+Styleguide: 16.0
+*/
+
+/*
+Ikony Społecznościowe
+
+Stylizacja dla ikon społecznościowych, w tym tła, marginesów i koloru tekstu.
+
+**.socialIcones:** Flex layout, centrowanie, style dla linków i ikon.
+
+Markup: 
+.socialIcones {
     display: flex;
     justify-content: center;
 }
-.socialIcones a{
+.socialIcones a {
     text-decoration: none;
     padding: 10px;
     background-color: #fff;
     margin: 20px;
     border-radius: 20px;
 }
-.socialIcones a i{
+.socialIcones a i {
     font-size: 2em;
     color: #2b1055;
     opacity: 0.9;
 }
-.socialIcones a:hover{
+.socialIcones a:hover {
     background-color: #2b1055;
     transition: 0.5s;
 }
-.socialIcones a:hover i{
+.socialIcones a:hover i {
     color: #fff;
     transition: 0.5s;
 }
-.footerMenu{
-    margin:10px;
+
+Styleguide: 17.0
+*/
+
+/*
+Menu Stopki
+
+Stylizacja dla menu w stopce, w tym marginesów, koloru tekstu i przejrzystości.
+
+**.footerMenu:** Styl menu, lista bez stylu, style dla linków.
+
+Markup: 
+.footerMenu {
+    margin: 10px;
 }
-.footerMenu ul{
+.footerMenu ul {
     display: flex;
     justify-content: center;
     list-style: none;
 }
-.footerMenu ul li a{
-    color:#fff;
-    margin:20px;
+.footerMenu ul li a {
+    color: #fff;
+    margin: 20px;
     text-decoration: none;
-    font-size:1em;
-    opacity:0.7;
-    transition:0.5s;
+    font-size: 1em;
+    opacity: 0.7;
+    transition: 0.5s;
 }
-.footerMenu ul li a:hover{
+.footerMenu ul li a:hover {
     opacity: 1;
 }
-.footerBottom{
+
+Styleguide: 16.1
+*/
+
+/*
+Dolna Stopka
+
+Stylizacja dla dolnej części stopki, w tym tła i koloru tekstu.
+
+**.footerBottom:** Gradient tła, padding, kolor tekstu.
+
+Markup:
+.footerBottom {
     background: linear-gradient(#2b1055, #130025);
     padding: 20px;
     text-align: center;
 }
-.footerBottom p{
+.footerBottom p {
     color: #fff;
 }
-.designer{
+
+Styleguide: 16.2
+*/
+
+/*
+Projektant
+
+Stylizacja dla informacji o projekcie, w tym przejrzystości, marginesów i rozmiaru czcionki.
+
+Markup: 
+.designer {
     opacity: 0.7;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 400;
     margin: 0px 5px; 
 }
-/* sytle popupów i forms */
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
 
-.popup {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid #ddd;
-    padding: 20px;
-    background-color: white;
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
+Styleguide: 18.0
+*/
 
-.popup.show {
-    display: block;
-    opacity: 1;
-}
+/*
+Animacja Pojawiania
 
-.closeBtn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 30px;
-    cursor: pointer;
-    color: #2b1055;
-    font-weight: bold;
-}
+Stylizacja dla animacji pojawiania elementów.
 
-form {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+*@keyframes fadeIn:* Animacja fadeIn od 0 do 1 opacity.
 
-input[type="text"], input[type="email"], textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #2b1055;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #7595de;
-}
-
-.popup article {
-    text-align: center;
-}
-
+Markup: 
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-@media only screen and (max-width: 800px) {
+
+Styleguide: 19.0
+*/
+
+/*
+Media Queries dla HomePage
+
+Dostosowania responsywnego projektu dla mniejszych ekranów.
+
+Markup:
+ @media only screen and (max-width: 800px) {
     body {
         padding-top: 10px;
     }
@@ -349,3 +430,7 @@ button:hover {
         margin: 10px;
     }
 }
+
+
+Styleguide: 20.0
+*/
